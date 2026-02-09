@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${TARGET_PROJECT_PATH:-.}:/project:ro
+    environment:
+      - PROJECT_PATH=/project

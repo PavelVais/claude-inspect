@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* Vue Flow dark theme overrides */
+.vue-flow {
+  --vf-node-bg: transparent;
+  --vf-node-text: #e2e8f0;
+  --vf-connection-stroke: #3b82f6;
+  --vf-handle: #3b82f6;
+  --vf-box-shadow: none;
+}
+
+.vue-flow__background {
+  background-color: #0a0e1a;
+}
+
+.vue-flow__minimap {
+  background-color: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 0.5rem;
+}
+
+.vue-flow__controls {
+  background-color: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.vue-flow__controls .vue-flow__controls-button {
+  background-color: #111827;
+  border-color: #1e293b;
+  color: #94a3b8;
+  fill: #94a3b8;
+}
+
+.vue-flow__controls .vue-flow__controls-button:hover {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  fill: #e2e8f0;
+}
+
+/* Node styling */
+.vue-flow__node {
+  border: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Edge styling */
+.vue-flow__edge-path {
+  stroke-width: 2;
+}
+
+/* Handle styling */
+.vue-flow__handle {
+  width: 8px;
+  height: 8px;
+  background-color: #3b82f6;
+  border: 2px solid #1e293b;
+}
