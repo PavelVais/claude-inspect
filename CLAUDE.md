@@ -27,11 +27,31 @@ PROJECT_PATH=. npm run dev
 # Dev mode — inspect another project
 PROJECT_PATH=/path/to/project npm run dev
 
+# Demo mode — use built-in demo data (ShopFlow e-commerce project)
+npm run demo
+
 # Docker — inspect any project (read-only mount)
 TARGET_PROJECT_PATH=/path/to/project docker compose up
 
 # Docker — rebuild and run
 TARGET_PROJECT_PATH=/path/to/project docker compose up --build
+```
+
+### Demo Mode
+
+The `demo/` directory contains a simulated `.claude` configuration for a fictional **ShopFlow** e-commerce project. It showcases all supported features:
+
+- **4 Agents**: api-architect, frontend-designer, database-optimizer, security-auditor
+- **10 Commands**: deploy, test, lint, migrate, seed, build, review, generate-api, performance-check, changelog
+- **5 Skills**: api-generator, test-factory, migration-builder, component-creator, docker-setup
+- **2 Hooks**: PreToolUse (Bash validation), PostToolUse (lint on edit)
+- **2 Todos**: payment webhooks (pending), order tracking (in progress)
+- **7 MCP Tools**: github (3), slack (2), datadog (2)
+- **Cross-references**: `review` → `security-auditor` agent, `build` → `migration-builder` skill, `test` → `test-factory` skill
+
+Run it with:
+```bash
+npm run demo
 ```
 
 ### Testing
@@ -150,6 +170,14 @@ Permissions are grouped by type (Bash, Web, FileSystem, Search, Other) to avoid 
 │           ├── parseCommands.ts             # Commands from commands/*.md
 │           ├── parseSkills.ts               # Skills from skills/*/SKILL.md (gray-matter)
 │           └── parseMcpTools.ts             # MCP tool name parsing (mcp__service__tool)
+├── demo/                                    # Built-in demo data (ShopFlow project)
+│   ├── CLAUDE.md                            # Demo project description
+│   └── .claude/
+│       ├── settings.local.json              # Permissions, hooks, MCP tools
+│       ├── todos.json                       # Sample todos
+│       ├── agents/*.md                      # 4 demo agents
+│       ├── commands/*.md                    # 10 demo commands
+│       └── skills/*/SKILL.md               # 5 demo skills
 ├── nuxt.config.ts                           # Tailwind vite plugin, CSS, runtimeConfig.projectPath
 ├── Dockerfile                               # Multi-stage Node 22 Alpine build
 ├── docker-compose.yml                       # Mount target project at /project:ro

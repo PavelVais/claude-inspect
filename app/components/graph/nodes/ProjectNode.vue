@@ -7,15 +7,16 @@ defineProps<{ data: ProjectNodeData }>()
 
 <template>
   <div
-    class="relative w-[280px] rounded-xl border border-blue-500/40 bg-gradient-to-br from-slate-900 to-slate-800 px-5 py-4 shadow-lg shadow-blue-500/10"
+    class="relative w-[320px] rounded-2xl border border-blue-500/50 bg-gradient-to-br from-slate-900 via-slate-800/95 to-slate-900 px-6 py-5"
+    style="box-shadow: 0 0 20px rgba(59, 130, 246, 0.15), 0 8px 24px rgba(0, 0, 0, 0.4)"
   >
-    <div class="mb-1 flex items-center gap-2">
-      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
-        <IconsIconProject class="h-5 w-5" />
+    <div class="mb-2 flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30">
+        <IconsIconProject class="h-6 w-6" />
       </div>
-      <h3 class="text-base font-semibold text-white">{{ data.name }}</h3>
+      <h3 class="text-lg font-bold text-white">{{ data.name }}</h3>
     </div>
-    <p v-if="data.overview" class="line-clamp-2 text-xs leading-relaxed text-slate-400">
+    <p v-if="data.overview" class="line-clamp-3 text-sm leading-relaxed text-slate-400">
       {{ data.overview }}
     </p>
     <Handle type="source" :position="Position.Right" class="!bg-blue-500" />

@@ -5,13 +5,25 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  modules: ['floating-vue/nuxt'],
+
   css: ['~/assets/css/main.css'],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss() as any],
   },
 
   runtimeConfig: {
     projectPath: process.env.PROJECT_PATH || '/project',
+  },
+
+  nitro: {
+    typescript: {
+      tsConfig: {
+        compilerOptions: {
+          types: ['node'],
+        },
+      },
+    },
   },
 })

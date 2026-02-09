@@ -1,0 +1,15 @@
+[
+  {
+    "id": "1",
+    "subject": "Integrate Stripe payment webhooks for order status sync",
+    "description": "Set up Stripe webhook endpoints to automatically update order status when payments succeed, fail, or are refunded. Include signature verification and idempotency handling.",
+    "status": "pending"
+  },
+  {
+    "id": "2",
+    "subject": "Implement real-time order tracking notifications",
+    "description": "Build a WebSocket-based notification system that pushes order status updates to customers in real-time. Include email fallback for offline users.",
+    "status": "in_progress",
+    "activeForm": "Implementing order tracking notifications"
+  }
+]

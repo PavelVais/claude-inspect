@@ -17,6 +17,8 @@ logs
 .DS_Store
 .fleet
 .idea
+demo_local
+.last-run.json
 
 # Local env files
 .env

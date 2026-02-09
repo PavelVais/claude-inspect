@@ -20,7 +20,7 @@ export async function parseClaudeMd(): Promise<ClaudeMdData> {
 
   // Extract project name: prefer directory name over "# CLAUDE.md" heading
   const nameMatch = content.match(/^#\s+(.+)$/m)
-  const heading = nameMatch ? nameMatch[1].trim() : ''
+  const heading = nameMatch?.[1] ? nameMatch[1].trim() : ''
   const isGenericHeading = !heading || /^claude\.?md$/i.test(heading)
   const projectName = isGenericHeading ? basename(resolve(getProjectPath())) : heading
 
@@ -28,7 +28,7 @@ export async function parseClaudeMd(): Promise<ClaudeMdData> {
   let overview = ''
   const overviewMatch = content.match(/##\s+Project Overview\s*\n([\s\S]*?)(?=\n##\s|\n$|$)/)
   if (overviewMatch) {
-    overview = overviewMatch[1].trim().split('\n').slice(0, 5).join('\n')
+    overview = overviewMatch[1]?.trim().split('\n').slice(0, 5).join('\n') ?? ''
   }
 
   return { projectName, overview, raw: content }

@@ -1,6 +1,6 @@
-import type { SkillData, CommandData, AgentData, PermissionGroup, McpToolData } from './claude-config'
+import type { SkillData, CommandData, AgentData, PermissionGroup, PermissionEntry, McpToolData, HookEventGroup, TodoData } from './claude-config'
 
-export type CategoryType = 'skills' | 'commands' | 'agents' | 'permissions' | 'mcpTools'
+export type CategoryType = 'skills' | 'commands' | 'agents' | 'permissions' | 'mcpTools' | 'hooks' | 'todos'
 
 export interface ProjectNodeData {
   name: string
@@ -24,6 +24,7 @@ export interface CommandNodeData {
 
 export interface AgentNodeData {
   agent: AgentData
+  crossRefCount: number
 }
 
 export interface PermissionNodeData {
@@ -32,4 +33,17 @@ export interface PermissionNodeData {
 
 export interface McpToolNodeData {
   tool: McpToolData
+}
+
+export interface HookNodeData {
+  hookGroup: HookEventGroup
+}
+
+export interface TodoNodeData {
+  todo: TodoData
+}
+
+export interface PermissionEntryNodeData {
+  entry: PermissionEntry
+  parentId: string
 }

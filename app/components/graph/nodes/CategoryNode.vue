@@ -15,10 +15,10 @@ const iconMap: Record<string, string> = {
 
 <template>
   <div
-    class="relative w-[200px] rounded-lg border bg-slate-900/90 px-4 py-3 shadow-md"
+    class="relative w-[200px] rounded-xl border bg-gradient-to-br from-slate-900/95 to-slate-800/90 px-4 py-3"
     :style="{
-      borderColor: data.color + '40',
-      boxShadow: `0 4px 12px ${data.color}15`,
+      borderColor: data.color + '50',
+      boxShadow: `0 0 12px ${data.color}20, 0 4px 16px rgba(0,0,0,0.3)`,
     }"
   >
     <div class="flex items-center justify-between">
@@ -32,6 +32,8 @@ const iconMap: Record<string, string> = {
           <IconsIconAgent v-else-if="data.category === 'agents'" class="h-3.5 w-3.5" />
           <IconsIconMcpTool v-else-if="data.category === 'mcpTools'" class="h-3.5 w-3.5" />
           <IconsIconPermission v-else-if="data.category === 'permissions'" class="h-3.5 w-3.5" />
+          <IconsIconHook v-else-if="data.category === 'hooks'" class="h-3.5 w-3.5" />
+          <IconsIconTodo v-else-if="data.category === 'todos'" class="h-3.5 w-3.5" />
         </div>
         <span class="text-sm font-medium text-white">{{ data.label }}</span>
       </div>

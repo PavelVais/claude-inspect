@@ -18,7 +18,7 @@ export async function parseCommands(): Promise<CommandData[]> {
   }
 
   const files = await readdir(commandsDir)
-  const mdFiles = files.filter((f) => f.endsWith('.md'))
+  const mdFiles = files.filter((f: string) => f.endsWith('.md'))
 
   const commands: CommandData[] = []
 
@@ -28,7 +28,7 @@ export async function parseCommands(): Promise<CommandData[]> {
 
     // Extract title from first # heading
     const titleMatch = content.match(/^#\s+(.+)$/m)
-    const title = titleMatch ? titleMatch[1].trim() : name
+    const title = titleMatch?.[1] ? titleMatch[1].trim() : name
 
     // Extract description: first non-empty, non-heading line
     const lines = content.split('\n')

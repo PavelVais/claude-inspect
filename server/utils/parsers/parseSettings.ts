@@ -13,9 +13,32 @@ export interface PermissionGroup {
   entries: PermissionEntry[]
 }
 
+export interface HookHandler {
+  type: 'command' | 'prompt' | 'agent'
+  command?: string
+  prompt?: string
+  timeout?: number
+  statusMessage?: string
+  async?: boolean
+  once?: boolean
+  model?: string
+}
+
+export interface HookMatcher {
+  matcher: string
+  hooks: HookHandler[]
+}
+
+export interface HookEventGroup {
+  event: string
+  matchers: HookMatcher[]
+  totalHandlers: number
+}
+
 export interface SettingsData {
   permissions: PermissionGroup[]
   mcpTools: string[]
+  hooks: HookEventGroup[]
   raw: Record<string, unknown>
 }
 
@@ -33,14 +56,15 @@ export async function parseSettings(): Promise<SettingsData> {
   const settingsPath = join(getClaudeDir(), 'settings.local.json')
 
   if (!existsSync(settingsPath)) {
-    return { permissions: [], mcpTools: [], raw: {} }
+    return { permissions: [], mcpTools: [], hooks: [], raw: {} }
   }
 
   const content = await readFile(settingsPath, 'utf-8')
   const settings = JSON.parse(content) as Record<string, unknown>
 
-  const allowList = (settings.permissions?.allow ?? []) as string[]
-  const denyList = (settings.permissions?.deny ?? []) as string[]
+  const rawPerms = settings.permissions as { allow?: string[]; deny?: string[] } | undefined
+  const allowList = rawPerms?.allow ?? []
+  const denyList = rawPerms?.deny ?? []
 
   // Collect MCP tools
   const mcpTools: string[] = []
@@ -70,5 +94,24 @@ export async function parseSettings(): Promise<SettingsData> {
     ([category, entries]) => ({ category, entries }),
   )
 
-  return { permissions, mcpTools, raw: settings }
+  // Parse hooks
+  const hooks: HookEventGroup[] = []
+  const rawHooks = settings.hooks as Record<string, unknown[]> | undefined
+  if (rawHooks && typeof rawHooks === 'object') {
+    for (const [event, matcherList] of Object.entries(rawHooks)) {
+      if (!Array.isArray(matcherList)) continue
+      const matchers: HookMatcher[] = []
+      let totalHandlers = 0
+      for (const entry of matcherList) {
+        const m = entry as Record<string, unknown>
+        const matcher = (m.matcher as string) || '*'
+        const hookHandlers = (m.hooks as HookHandler[]) || []
+        totalHandlers += hookHandlers.length
+        matchers.push({ matcher, hooks: hookHandlers })
+      }
+      hooks.push({ event, matchers, totalHandlers })
+    }
+  }
+
+  return { permissions, mcpTools, hooks, raw: settings }
 }
