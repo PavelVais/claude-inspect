@@ -18,12 +18,12 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    projectPath: process.env.PROJECT_PATH || '/project',
+    projectPath: process.env.PROJECT_PATH || '/inspect',
   },
 
   nitro: {
     prerender: {
-      routes: ['/api/claude-config'],
+      routes: process.env.PRERENDER_API === '1' ? ['/api/claude-config'] : [],
     },
     typescript: {
       tsConfig: {

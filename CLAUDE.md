@@ -180,7 +180,7 @@ Permissions are grouped by type (Bash, Web, FileSystem, Search, Other) to avoid 
 │       └── skills/*/SKILL.md               # 5 demo skills
 ├── nuxt.config.ts                           # Tailwind vite plugin, CSS, runtimeConfig.projectPath
 ├── Dockerfile                               # Multi-stage Node 22 Alpine build
-├── docker-compose.yml                       # Mount target project at /project:ro
+├── docker-compose.yml                       # Mount target project at /inspect:ro
 ├── .dockerignore
 └── .env.example
 ```
@@ -191,7 +191,7 @@ Permissions are grouped by type (Bash, Web, FileSystem, Search, Other) to avoid 
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PROJECT_PATH` | `/project` | Path to the project to inspect (server-side, set in nuxt runtimeConfig) |
+| `PROJECT_PATH` | `/inspect` | Path to the project to inspect (server-side, set in nuxt runtimeConfig) |
 | `TARGET_PROJECT_PATH` | `.` | Path for Docker volume mount (docker-compose.yml) |
 
 ### nuxt.config.ts
