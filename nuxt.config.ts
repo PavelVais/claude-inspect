@@ -22,6 +22,9 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    prerender: {
+      routes: ['/api/claude-config'],
+    },
     typescript: {
       tsConfig: {
         compilerOptions: {
