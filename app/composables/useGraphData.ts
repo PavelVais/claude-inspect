@@ -56,7 +56,9 @@ export function useGraphData() {
 
     try {
       const baseURL = useRuntimeConfig().app.baseURL || '/'
-      const data = await $fetch<ClaudeConfig>(`${baseURL}api/claude-config`)
+      const data = await $fetch<ClaudeConfig>(`${baseURL}api/claude-config`, {
+        responseType: 'json',
+      })
       config.value = data
       buildGraph(data, activeVisibleSections ?? undefined, activeCrossRefs)
     } catch (e: unknown) {
