@@ -1,9 +1,11 @@
 services:
   app:
     build: .
+    image: pavelvais/claude-inspect
+    container_name: claude-inspect
     ports:
       - "3000:3000"
     volumes:
-      - ${TARGET_PROJECT_PATH:-.}:/project:ro
+      - ${TARGET_PROJECT_PATH:-.}:/inspect:ro
     environment:
-      - PROJECT_PATH=/project
+      - PROJECT_PATH=/inspect

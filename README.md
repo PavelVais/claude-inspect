@@ -41,16 +41,6 @@ Commands, Agents, MCP Tools, and Permissions.
 | `settings.local.json` | 🛡️ Permissions (grouped by type)                   |
 | `settings.local.json` | 🔌 MCP Tools (`mcp__service__tool` entries)         |
 
-## 🗺️ Graph Layout
-
-```
-                    ⚡ Skills      → skill items...
-                    💻 Commands    → command items...
-📋 Project    →     🤖 Agents     → agent items...
-                    🔌 MCP Tools   → mcp tool items...
-                    🛡️ Permissions → permission groups...
-```
-
 ## 🚀 Quick Start
 
 ### Local Development
@@ -71,24 +61,34 @@ Open **http://localhost:3000** 🎉
 PROJECT_PATH=/path/to/your/project npm run dev
 ```
 
-### 🐳 Docker
+### 🐳 Docker Hub (recommended)
 
 ```bash
-# Inspect any project via Docker
+# Inspect any project — mount the whole project
+docker run --rm -v $(pwd):/inspect:ro -p 3000:3000 pavelvais/claude-inspect
+
+# Or mount just the .claude directory
+docker run --rm -v $(pwd)/.claude:/inspect:ro -p 3000:3000 pavelvais/claude-inspect
+```
+
+Both mount styles are auto-detected. The target is mounted **read-only** (`:ro`) for safety.
+
+### Docker Compose (development)
+
+```bash
+# Inspect any project via Docker Compose
 TARGET_PROJECT_PATH=/path/to/project docker compose up
 
 # Rebuild and run
 TARGET_PROJECT_PATH=/path/to/project docker compose up --build
 ```
 
-The target project is mounted **read-only** (`:ro`) for safety.
-
 
 ## ⚙️ Environment Variables
 
 | Variable              | Default    | Description                                  |
 |-----------------------|------------|----------------------------------------------|
-| `PROJECT_PATH`        | `/project` | Path to the project to inspect (server-side) |
+| `PROJECT_PATH`        | `/inspect` | Path to the project to inspect (server-side) |
 | `TARGET_PROJECT_PATH` | `.`        | Path for Docker volume mount                 |
 
 ## 📜 Scripts

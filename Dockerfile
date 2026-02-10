@@ -11,6 +11,13 @@ COPY . .
 RUN npm run build
 
 FROM base AS production
+
+LABEL org.opencontainers.image.title="Claude Inspect" \
+      org.opencontainers.image.description="Interactive graph visualizer for Claude Code project configuration" \
+      org.opencontainers.image.source="https://github.com/pavelvais/claude-inspect" \
+      org.opencontainers.image.version="0.1.0" \
+      org.opencontainers.image.authors="pavelvais"
+
 COPY --from=build /app/.output ./.output
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
