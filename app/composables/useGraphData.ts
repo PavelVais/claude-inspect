@@ -55,7 +55,8 @@ export function useGraphData() {
     if (showCrossRefs !== undefined) activeCrossRefs = showCrossRefs
 
     try {
-      const data = await $fetch<ClaudeConfig>('/api/claude-config')
+      const baseURL = useRuntimeConfig().app.baseURL || '/'
+      const data = await $fetch<ClaudeConfig>(`${baseURL}api/claude-config`)
       config.value = data
       buildGraph(data, activeVisibleSections ?? undefined, activeCrossRefs)
     } catch (e: unknown) {
