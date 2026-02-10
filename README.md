@@ -18,6 +18,18 @@ Commands, Agents, MCP Tools, and Permissions.
 - 🗺️ **MiniMap + Controls** — navigate large configs easily
 - 🐳 **Docker ready** — inspect any project via read-only mount
 
+## Screenshots
+
+
+<img width="720" height="540" alt="screenshot_1 5x_postspark_2026-02-10_14-11-52" src="https://github.com/user-attachments/assets/f98d4101-1660-42b2-9588-5b2c6c2a76a4" />
+
+
+<img width="720" height="540" alt="screenshot_1 5x_postspark_2026-02-10_14-13-03" src="https://github.com/user-attachments/assets/ba337547-bc2e-472d-a715-c5d548c49c07" />
+
+
+<img width="720" height="540" alt="screenshot_1 5x_postspark_2026-02-10_14-15-12" src="https://github.com/user-attachments/assets/4abbb7b8-ee10-436f-a37a-6e90c3c229b0" />
+
+
 ## 📦 What It Parses
 
 | Source                | What you see                                        |
@@ -71,71 +83,6 @@ TARGET_PROJECT_PATH=/path/to/project docker compose up --build
 
 The target project is mounted **read-only** (`:ro`) for safety.
 
-## 🛠️ Tech Stack
-
-|    | Technology          | Purpose                  |
-|----|---------------------|--------------------------|
-| 💚 | **Nuxt 4** + Vue 3  | Framework                |
-| 🌊 | **VueFlow**         | Interactive node graph   |
-| 📐 | **Dagre**           | Automatic LR tree layout |
-| 🎨 | **Tailwind CSS v4** | Styling (dark theme)     |
-| 📄 | **gray-matter**     | YAML frontmatter parsing |
-| 🎭 | **Playwright**      | E2E testing              |
-| 🐳 | **Docker**          | Containerization         |
-
-## 📁 Project Structure
-
-```
-app/
-├── pages/index.vue                    # 🏠 Main page
-├── components/
-│   ├── graph/
-│   │   ├── InspectGraph.vue           # 🌐 VueFlow canvas
-│   │   ├── nodes/
-│   │   │   ├── ProjectNode.vue        # 📋 Project card
-│   │   │   ├── CategoryNode.vue       # 🏷️ Category card
-│   │   │   ├── SkillNode.vue          # ⚡ Skill card
-│   │   │   ├── CommandNode.vue        # 💻 Command card
-│   │   │   ├── AgentNode.vue          # 🤖 Agent card
-│   │   │   ├── PermissionNode.vue     # 🛡️ Permission group card
-│   │   │   └── McpToolNode.vue        # 🔌 MCP tool card
-│   │   └── edges/
-│   │       └── GlowEdge.vue           # ✨ Colored glowing edge
-│   └── ui/
-│       ├── AppHeader.vue              # 📌 Top bar
-│       ├── LoadingOverlay.vue         # ⏳ Loading spinner
-│       ├── ErrorOverlay.vue           # ❌ Error state
-│       └── NodeDetailPanel.vue        # 🔍 Detail modal
-├── composables/
-│   ├── useGraphData.ts                # 📊 API fetch + graph transform
-│   └── useGraphLayout.ts             # 📐 Dagre layout engine
-└── types/
-    ├── claude-config.ts               # 📝 API response types
-    └── graph.ts                       # 📝 Node data types
-
-server/
-├── api/
-│   └── claude-config.get.ts           # 🔗 GET /api/claude-config
-└── utils/
-    ├── config.ts                      # ⚙️ Project path helpers
-    └── parsers/
-        ├── parseClaudeMd.ts           # 📋 CLAUDE.md parser
-        ├── parseSettings.ts           # 🛡️ Permissions parser
-        ├── parseCommands.ts           # 💻 Commands parser
-        ├── parseSkills.ts             # ⚡ Skills parser
-        ├── parseAgents.ts             # 🤖 Agents parser
-        └── parseMcpTools.ts           # 🔌 MCP tools parser
-```
-
-## 🎨 Color Scheme
-
-| Category        | Color     | Hex       |
-|-----------------|-----------|-----------|
-| ⚡ Skills        | 🔵 Blue   | `#3b82f6` |
-| 💻 Commands     | 🟢 Green  | `#22c55e` |
-| 🤖 Agents       | 🔵 Cyan   | `#06b6d4` |
-| 🔌 MCP Tools    | 🟣 Violet | `#8b5cf6` |
-| 🛡️ Permissions | 🟡 Amber  | `#f59e0b` |
 
 ## ⚙️ Environment Variables
 
