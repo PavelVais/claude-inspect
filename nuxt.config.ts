@@ -7,6 +7,10 @@ export default defineNuxtConfig({
 
   modules: ['floating-vue/nuxt'],
 
+  app: {
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
+  },
+
   css: ['~/assets/css/main.css'],
 
   vite: {

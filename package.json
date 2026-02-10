@@ -8,6 +8,7 @@
     "demo": "PROJECT_PATH=./demo nuxt dev",
     "demo_local": "PROJECT_PATH=./demo_local nuxt dev",
     "generate": "nuxt generate",
+    "generate:demo": "PROJECT_PATH=./demo NUXT_APP_BASE_URL=/claude-inspect/ nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
