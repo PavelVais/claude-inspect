@@ -1,0 +1,77 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit",
+      "Write",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(npm test:*)",
+      "Bash(npx jest:*)",
+      "Bash(npx prisma:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker exec:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git diff:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh issue:*)",
+      "Bash(curl:*)",
+      "Bash(node:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx tsc:*)",
+      "Bash(kubectl get:*)",
+      "Bash(kubectl describe:*)",
+      "Bash(kubectl logs:*)",
+      "WebSearch",
+      "WebFetch(domain:stripe.com)",
+      "WebFetch(domain:docs.stripe.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:stackoverflow.com)",
+      "WebFetch(domain:vuejs.org)",
+      "WebFetch(domain:expressjs.com)",
+      "WebFetch(domain:www.prisma.io)",
+      "WebFetch(domain:redis.io)",
+      "WebFetch(domain:www.elastic.co)",
+      "Read(/Users/dev/Library/Application Support/JetBrains/**)",
+      "mcp__github__search_repositories",
+      "mcp__github__create_issue",
+      "mcp__github__get_pull_request",
+      "mcp__slack__post_message",
+      "mcp__slack__list_channels",
+      "mcp__datadog__get_metrics",
+      "mcp__datadog__create_monitor"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(kubectl delete:*)",
+      "Bash(docker system prune:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Validating bash command...'",
+            "statusMessage": "Validating bash command..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npx eslint --fix --quiet",
+            "timeout": 30,
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
